@@ -3,11 +3,13 @@ import { View, StyleSheet, Image } from 'react-native';
 
 import { Text } from 'react-native-paper';
 import { students } from '../data/StudentsDb';
+import BottomTabNavigatior from './BottomTabNavigator'
 
 export default function Profile({ studentId }) {
     const selectedStudent = students.find(student => student.id === studentId);
     return (
         <>
+        <BottomTabNavigatior/>
             <View style={styles.container}>
                 <Image style={styles.avatar} source={require('../assets/profilepic/1.jpg')} />
 
