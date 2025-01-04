@@ -10,8 +10,10 @@ const Stack = createNativeStackNavigator();
 
 function RootStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login} />
+    <Stack.Navigator  initialRouteName="Login" screenOptions={{
+      headerStyle: { textAlign: 'center' },
+    }}>
+      <Stack.Screen name="Login" component={Login}   options={{ title: 'UoV Student Care' } }/>
     </Stack.Navigator>
   );
 }
