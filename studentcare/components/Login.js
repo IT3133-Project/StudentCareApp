@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, SafeAreaView, ScrollView } from "react-native";
+import { KeyboardAvoidingView, SafeAreaView, ScrollView, View } from "react-native";
 import { Text } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -8,9 +8,9 @@ export default function Login() {
         <SafeAreaProvider>
             <SafeAreaView>
                 <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-                <ScrollView>
+                    <ScrollView>
                         <View style={styles.header}>
-                    <Text variant="displayLarge" style={styles.title}> STUDENT LOGIN</Text>
+                            <Text variant="displayLarge" style={styles.title}> STUDENT LOGIN</Text>
                         </View>
                         <View style={styles.body}>
 
@@ -18,8 +18,8 @@ export default function Login() {
                         <View style={styles.footer}>
                             <Text>UOV ©2024</Text>
                         </View>
-                </ScrollView>
-            </KeyboardAvoidingView>
+                    </ScrollView>
+                </KeyboardAvoidingView>
             </SafeAreaView>
         </SafeAreaProvider>
     );
@@ -28,10 +28,24 @@ export default function Login() {
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 24,
         fontWeight: 'bold',
         textAlign: 'center',
         marginTop: 20,
-        marginBottom: 20
+        marginBottom: 20,
+        
+    },
+    header: {
+        flex: 3,
+        width: '100%',
+    },
+    body: {
+        flex: 5,
+        width: '100%',
+    },
+    footer: {
+        flex: 2,
+        backgroundColor: '#810541',
+        width: '100%',
+        alignItems: 'center',
     }
 })
