@@ -2,17 +2,22 @@ import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 
 import { Text } from 'react-native-paper';
-import { courses } from '../data/StudentsDb';
+import { courses, marks, subjects } from '../data/StudentsDb';
 import BottomTabNavigatior from './BottomTabNavigator'
 
 export default function Subjects({ route }) {
     const user = route.params;
 
+    const subjectDetail = subjects.filter(subject => user.course_id === subject.course_id);
+    const marksDetail = marks.filter(marks => user.course_id === marks.subject_id);
+    const CourseDetail = courses.find(course => user.course_id === course.id);
+
+
     return (
         <>
-        <BottomTabNavigatior/>
+            <BottomTabNavigatior />
             <View style={styles.container}>
-                <Text variant='displayMedium'>{user.name}</Text>
+                <Text variant='displayMedium'>{CourseDetail.name}</Text>
                 <Text> <Text style={styles.bold}> Code: </Text> {user.course_code} </Text>
                 <Text> <Text style={styles.bold}> Dept: </Text> {user.department} </Text>
                 <Text style={styles.bold}>Course Information</Text>
