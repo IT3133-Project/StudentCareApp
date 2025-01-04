@@ -5,20 +5,21 @@ import { Text } from 'react-native-paper';
 import { courses } from '../data/StudentsDb';
 import BottomTabNavigatior from './BottomTabNavigator'
 
-export default function Subjects({ studentId }) {
-    const selectedStudent = courses.find(course => course.id ===studentId );
+export default function Subjects({ route }) {
+    const user = route.params;
+
     return (
         <>
         <BottomTabNavigatior/>
             <View style={styles.container}>
-                <Text variant='displayMedium'>{selectedStudent.name}</Text>
-                <Text> <Text style={styles.bold}> Code: </Text> {selectedStudent.course_code} </Text>
-                <Text> <Text style={styles.bold}> Dept: </Text> {selectedStudent.department} </Text>
+                <Text variant='displayMedium'>{user.name}</Text>
+                <Text> <Text style={styles.bold}> Code: </Text> {user.course_code} </Text>
+                <Text> <Text style={styles.bold}> Dept: </Text> {user.department} </Text>
                 <Text style={styles.bold}>Course Information</Text>
-                <Text> <Text style={styles.bold}> Code: </Text> {selectedStudent.course_code} </Text>
-                <Text> <Text style={styles.bold}> Department: </Text> {selectedStudent.department} </Text>
-                <Text> <Text style={styles.bold}> Duration: </Text> {selectedStudent.duration} </Text>
-                <Text> <Text style={styles.bold}> Description: </Text> {selectedStudent.description} </Text>
+                <Text> <Text style={styles.bold}> Code: </Text> {user.course_code} </Text>
+                <Text> <Text style={styles.bold}> Department: </Text> {user.department} </Text>
+                <Text> <Text style={styles.bold}> Duration: </Text> {user.duration} </Text>
+                <Text> <Text style={styles.bold}> Description: </Text> {user.description} </Text>
             </View>
         </>
     );
