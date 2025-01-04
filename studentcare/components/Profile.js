@@ -25,6 +25,9 @@ export default function Profile({route}) {
                 <Text> <Text style={styles.bold}> Age: </Text> {user.age} </Text>
                 <Text> <Text style={styles.bold}> Blood Group: </Text> {user.blood_group} </Text>
             </View>
+            <View style={styles.footer}>
+                <Text>MyApp © 2024</Text>
+            </View>
         </>
     );
 }
@@ -46,5 +49,22 @@ const styles = StyleSheet.create({
     },
     bold: {
         fontWeight: 'bold',
-    }
+    },
+    header: {
+        flex: 3,
+        width: "100%",
+        alignItems: "center",
+        padding: 10,
+        marginBottom: 10,
+    },
+    body: {
+        flex: 5,
+        width: "100%",
+    },
+    footer: {
+        flex: 2,
+        width: "100%",
+        alignItems: "center",
+        marginTop: 10,
+    },
 });

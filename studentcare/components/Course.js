@@ -24,7 +24,7 @@ export default function Course() {
                 <Text> <Text style={styles.bold}> Description: </Text> {CourseDetail.description} </Text>
                 <Divider/>
             </View>
-            
+
         </>
     );
 }
@@ -46,5 +46,22 @@ const styles = StyleSheet.create({
     },
     bold: {
         fontWeight: 'bold',
-    }
+    },
+    header: {
+        flex: 3,
+        width: "100%",
+        alignItems: "center",
+        padding: 10,
+        marginBottom: 10,
+    },
+    body: {
+        flex: 5,
+        width: "100%",
+    },
+    footer: {
+        flex: 2,
+        width: "100%",
+        alignItems: "center",
+        marginTop: 10,
+    },
 });
