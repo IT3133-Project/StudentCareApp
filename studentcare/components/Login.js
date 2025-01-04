@@ -19,7 +19,7 @@ export default function Login() {
         const user = students.find((student) => student.username === name && student.password === pwd);
         if (user) {
             setError("");
-            navigation.navigate('Home');
+            navigation.navigate('Profile', { user });
 
         } else {
             setError("Please Check your username or password ")
