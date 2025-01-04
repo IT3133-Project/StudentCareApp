@@ -12,7 +12,7 @@ import Subjects from './Subjects';
 
 const Tab = createBottomTabNavigator();
 
-export default function MyComponent() {
+export default function BottomTabNavigator(route) {
     return (
         <Tab.Navigator
             screenOptions={{
@@ -62,6 +62,7 @@ export default function MyComponent() {
         >
             <Tab.Screen
                 name="Profile"
+                initialParams={route}
                 component={Profile}
                 options={{
                     tabBarLabel: 'Profile',
