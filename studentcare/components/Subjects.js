@@ -15,7 +15,8 @@ export default function Subjects({ route }) {
 
     const totalMarks = marksDetail.reduce((sum, mark) => sum + mark.marks, 0);
     const averageMarks = marksDetail.length > 0 ? (totalMarks / marksDetail.length).toFixed(2) : 0;
-
+console.log(marksDetail)
+console.log(subjectDetail)
 
 
     return (
@@ -42,18 +43,17 @@ export default function Subjects({ route }) {
                                     <DataTable.Title >Marks</DataTable.Title>
                                 </DataTable.Header>
 
-                                {subjectDetail.map((s) => (
-                                    <DataTable.Row key={s.course_id}>
-                                        <DataTable.Cell>{s.name}</DataTable.Cell>
-                                    </DataTable.Row>
-                                ))}
-                                {marksDetail.map((m) => (
-                                    <DataTable.Row key={m.student_id}>
-                                        <DataTable.Cell>{m.marks}</DataTable.Cell>
-                                    </DataTable.Row>
-                                ))}
+                                {subjectDetail.map((subject) => {
+                                    const markEntry = marksDetail.find(m => m.subject_id === subject.id);
+                                    return (
+                                        <DataTable.Row key={subject.id}>
+                                            <DataTable.Cell>{subject.name}</DataTable.Cell>
+                                            <DataTable.Cell>{markEntry ? markEntry.marks : 'N/A'}</DataTable.Cell>
+                                        </DataTable.Row>
+                                    );
+                                })}
                             </DataTable>
-                            
+
                         </View>
                     </Card.Content>
                 </Card>
@@ -71,7 +71,7 @@ export default function Subjects({ route }) {
 
 const styles = StyleSheet.create({
     container: {
-        
+
     },
     avatar: {
 
