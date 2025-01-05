@@ -39,7 +39,7 @@ function RootStack() {
 }
 
 function MainTab({ route }) {
-  const student = route.params;
+  const user = route.params;
   return (
     <Tab.Navigator
       screenOptions={{
@@ -51,7 +51,7 @@ function MainTab({ route }) {
       <Tab.Screen
         name="Profile"
         component={Profile}
-        initialParams={student}
+        initialParams={user}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => {
@@ -61,7 +61,7 @@ function MainTab({ route }) {
       <Tab.Screen
         name="Course"
         component={Course}
-        initialParams={student}
+        initialParams={user}
         options={{
           tabBarLabel: 'Course',
           tabBarIcon: ({ color, size }) => {
@@ -71,7 +71,7 @@ function MainTab({ route }) {
       <Tab.Screen
         name="Subjects"
         component={Subjects}
-        initialParams={student}
+        initialParams={user}
         options={{
           tabBarLabel: 'Subjects',
           tabBarIcon: ({ color, size }) => {
