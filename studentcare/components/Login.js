@@ -1,15 +1,16 @@
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { KeyboardAvoidingView, SafeAreaView, ScrollView, View, StyleSheet, Platform } from "react-native";
+import { KeyboardAvoidingView, SafeAreaView, ScrollView, View, StyleSheet, Platform, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { Button, Text, TextInput } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { students } from "../data/StudentsDb";
 import Header from "./Header";
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
     const [name, setName] = useState("");
     const [pwd, setPwd] = useState("");
     const [error, setError] = useState("");
+    const [showpwd, setShowpwd] = useState(false);
 
     const handleLogin = () => {
         if (!name || !pwd) {
@@ -35,14 +36,18 @@ export default function Login({navigation}) {
                     style={styles.flexContainer}
                 >
                     <ScrollView contentContainerStyle={styles.scrollContainer}>
-                        <View style={styles.header}>
-                            <Header/>
-                        </View>
+                        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                            <View style={styles.header}>
+                                <Header />
+                            </View>
+                        </TouchableWithoutFeedback>
+
                         <View style={styles.title}>
-                            <Text variant="displaySmall" style={styles.title}>
+                            <Text variant="displaySmall" style={styles.titleText}>
                                 STUDENT LOGIN
                             </Text>
                         </View>
+
                         <View style={styles.body}>
                             <View style={styles.input}>
                                 <TextInput
@@ -52,24 +57,35 @@ export default function Login({navigation}) {
                                     onChangeText={setName}
                                 />
                             </View>
+
                             <View style={styles.input}>
                                 <TextInput
                                     label="Password"
                                     mode="outlined"
-                                    secureTextEntry
+                                    secureTextEntry={!showpwd}
                                     value={pwd}
                                     onChangeText={setPwd}
+                                    right={
+                                        <TextInput.Icon
+                                            icon={showpwd ? "eye-off" : "eye"}
+                                            onPress={() => setShowpwd(!showpwd)}
+                                            color={showpwd ? "#000" : "#000"}
+                                        />
+                                    }
                                 />
                             </View>
+
                             {error ? <Text style={styles.errorText}>{error}</Text> : null}
+
                             <View style={styles.input}>
                                 <Button mode="contained" onPress={handleLogin}>
                                     Login
                                 </Button>
                             </View>
                         </View>
+
                         <View style={styles.footer}>
-                            <Text>UOV ©2024</Text>
+                            <Text style={styles.footerText}>UOV ©2024</Text>
                         </View>
                     </ScrollView>
                 </KeyboardAvoidingView>
@@ -84,25 +100,19 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
     },
     flexContainer: {
-        flex: 5,
+        flex: 1, 
     },
     scrollContainer: {
         flexGrow: 1,
         justifyContent: "center",
         paddingHorizontal: 16,
     },
-    title: {
+    titleText: {
         fontWeight: "bold",
         textAlign: "center",
         marginVertical: 20,
     },
-    title: {
-        marginTop:0,
-        marginBottom: 15,
-        textAlign: "center",
-        fontWeight: "bold",
-    },
-    header:{
+    header: {
         flex: 3,
     },
     body: {
@@ -116,7 +126,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         width: "100%",
-        height:10,
+        height: 10,
+    },
+    footerText: {
+        color: '#fff',
     },
     input: {
         marginBottom: 10,
