@@ -7,9 +7,9 @@ export default function Profile({route}) {
     const user = route.params;
     return (
         <>
-        <BottomTabNavigatior/>
+        {/* <BottomTabNavigatior/> */}
             <View style={styles.container}>
-                <Image style={styles.avatar} source={user.profile_pic} />
+                <Image style={styles.avatar} source={{uri:user.profile_pic}} />
 
                 <Text variant='displayMedium'>{user.name}</Text>
                 <Text> <Text style={styles.bold}> Age: </Text> {user.age} | </Text>
