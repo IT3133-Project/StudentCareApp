@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
     },
     flexContainer: {
-        flex: 1,
+        flex: 5,
     },
     scrollContainer: {
         flexGrow: 1,
@@ -111,11 +111,12 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     footer: {
-        backgroundColor: "#810541",
+        backgroundColor: "#4a148c",
         alignItems: "center",
         flex: 1,
         justifyContent: "center",
         width: "100%",
+        height:10,
     },
     input: {
         marginBottom: 10,
