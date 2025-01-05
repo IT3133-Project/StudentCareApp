@@ -1,74 +1,72 @@
 import React from 'react';
-import { View, StyleSheet, Image, ScrollView } from 'react-native';
-
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { Avatar, Card, Divider, Text } from 'react-native-paper';
-import BottomTabNavigatior from './BottomTabNavigator'
 import Header from './Header';
+
 export default function Profile({ route }) {
     const user = route.params?.user;
+
     return (
         <>
-            <ScrollView>
-                <Header />
-                <Card>
-                    <Card.Content>
-                        <View style={styles.container}>
-                            <View style={styles.overview}>
-                                <Avatar.Image
-                                    size={150}
-                                    source={user.profile_pic}
-                                    style={styles.avatar}
-                                />
-                                <Text variant='displaySmall' >{user.name}</Text>
-                                <Text>  Age: {user.age} | Gender: {user.gender} </Text>
-                            </View>
-                            <Divider />
+            <ScrollView contentContainerStyle={styles.scrollView}>
+                <View style={styles.header}>
+                    <Header />
+                </View>
 
-                            <View style={styles.info}>
-                                <Text style={styles.bold}>Contact Information</Text>
-                                <Text> Email: {user.email} </Text>
-                                <Text> Phone:  {user.phone} </Text>
-                                <Text> Address: {user.address} </Text>
-                            </View>
+                <View style={styles.body}>
+                    <Card style={styles.card}>
+                        <Card.Content>
+                            <View style={styles.container}>
+                                <View style={styles.overview}>
+                                    <Avatar.Image
+                                        size={150}
+                                        source={user.profile_pic}
+                                        style={styles.avatar}
+                                    />
+                                    <Text variant='displaySmall'>{user.name}</Text>
+                                    <Text>Age: {user.age} | Gender: {user.gender}</Text>
+                                </View>
+                                <Divider />
 
-                            <Divider />
+                                <View style={styles.info}>
+                                    <Text style={styles.bold}>Contact Information</Text>
+                                    <Text>Email: {user.email}</Text>
+                                    <Text>Phone: {user.phone}</Text>
+                                    <Text>Address: {user.address}</Text>
+                                </View>
 
-                            <View style={styles.bioInfo}>
-                                <Text style={styles.bold}>Biological Information</Text>
-                                <Text> Gender:  {user.gender} </Text>
-                                <Text> Age:  {user.age} </Text>
-                                <Text> Blood Group:  {user.blood_group} </Text>
+                                <Divider />
+
+                                <View style={styles.bioInfo}>
+                                    <Text style={styles.bold}>Biological Information</Text>
+                                    <Text>Gender: {user.gender}</Text>
+                                    <Text>Age: {user.age}</Text>
+                                    <Text>Blood Group: {user.blood_group}</Text>
+                                </View>
                             </View>
-                        </View>
-                    </Card.Content>
-                </Card>
+                        </Card.Content>
+                    </Card>
+                </View>
 
                 <View style={styles.footer}>
                     <Text style={styles.footerText}>MyApp © 2024</Text>
                 </View>
             </ScrollView>
-
         </>
     );
 }
 
-
-
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
-        marginTop: 10,
         flexDirection: 'column',
     },
     avatar: {
         marginBottom: 10,
-
     },
     overview: {
-        alignContent: 'center',
-        justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 50
+        marginBottom: 20,
     },
     info: {
         marginTop: 10,
@@ -81,26 +79,35 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     header: {
-        flex: 3,
-        width: "100%",
-        alignItems: "center",
+        width: '100%',
+        alignItems: 'center',
         padding: 10,
         marginBottom: 10,
     },
     body: {
-        flex: 5,
-        width: "100%",
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '90%',
+        alignSelf: 'center',
+    },
+    card: {
+        width: '100%',
+        elevation: 4,
+        borderRadius: 8,
+        padding: 10,
+        marginBottom: 20,
     },
     footer: {
-        flex: 2,
-        width: "100%",
-        alignItems: "center",
-        marginTop: 10,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#4a148c',
-        height:30
     },
-    footerText:{
+    footerText: {
         color: '#fff',
-    }
-    
+    },
+    scrollView: {
+        flexGrow: 1,
+    },
 });
