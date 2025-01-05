@@ -20,8 +20,8 @@ function RootStack() {
       initialRouteName="Login"
       screenOptions={{
         headerTitleAlign: 'center',
-        headerStyle: { backgroundColor: '#f5f5f5' },
-        headerTitleStyle: { fontWeight: 'bold' },
+        headerStyle: { backgroundColor: '#4a148c' },
+        headerTitleStyle: { fontWeight: 'bold' , color:'#fff' },
       }}
     >
       <Stack.Screen
