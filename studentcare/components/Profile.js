@@ -4,7 +4,7 @@ import { View, StyleSheet, Image } from 'react-native';
 import { Divider, Text } from 'react-native-paper';
 import BottomTabNavigatior from './BottomTabNavigator'
 export default function Profile({route}) {
-    const user = route.params;
+    const user = route.params?.user;
     return (
         <>
         {/* <BottomTabNavigatior/> */}
