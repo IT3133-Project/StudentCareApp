@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
-
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { Card, Divider, Text } from 'react-native-paper';
 import { courses } from '../data/StudentsDb';
 import Header from './Header';
@@ -10,88 +9,85 @@ export default function Course({ route }) {
     const CourseDetail = courses.find(course => user.course_id === course.id);
 
     return (
-        <>
-
-
-            
-            <Header />
-
-            <View styles={styles.body}>
-                <Card style={styles.card}>
-                    <Card.Content>
-                        <View style={styles.container}>
-                            <View style={styles.overview}>
-                                <Text variant='displaySmall'>{CourseDetail.name}</Text>
-                                <Text>Code: {CourseDetail.course_code} | Dept: {CourseDetail.department} </Text>
-                            </View>
-                            <Divider />
-                            <Text style={styles.bold}>Course Information</Text>
-                            <Text>  Code:  {CourseDetail.course_code} </Text>
-                            <Text>  Department:  {CourseDetail.department} </Text>
-                            <Text>  Duration: {CourseDetail.duration} </Text>
-                            <Text>  Description:  {CourseDetail.description} </Text>
-                            <Divider />
-                        </View>
-                    </Card.Content>
-                </Card>
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <Header />
             </View>
+
+            <ScrollView contentContainerStyle={styles.scrollView}>
+                <View style={styles.body}>
+                    <Card style={styles.card}>
+                        <Card.Content>
+                            <View style={styles.overview}>
+                                <Text variant="displaySmall">{CourseDetail.name}</Text>
+                                <Text>Code: {CourseDetail.course_code} | Dept: {CourseDetail.department}</Text>
+                            </View>
+                            <Divider style={styles.divider}/>
+                            <Text style={styles.bold}>Course Information</Text>
+                            <Text>Code: {CourseDetail.course_code}</Text>
+                            <Text>Department: {CourseDetail.department}</Text>
+                            <Text>Duration: {CourseDetail.duration}</Text>
+                            <Text>Description: {CourseDetail.description}</Text>
+                        </Card.Content>
+                        <Divider style={styles.divider}/>
+                    </Card>
+                    
+                </View>
+                
+            </ScrollView>
 
             <View style={styles.footer}>
                 <Text style={styles.footerText}>MyApp © 2024</Text>
             </View>
-
-
-
-
-
-
-        </>
+        </View>
     );
 }
 
-
-
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'column',
-        marginTop: 5,
-    },
-    card: {
-        marginTop: 20
-    },
-    info: {
-        fontSize: 16,
-        marginBottom: 5,
-    },
-    overview: {
-        alignContent: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 20
-    },
-    bold: {
-        fontWeight: 'bold',
+        flex: 1,
+        backgroundColor: '#f5f5f5',
     },
     header: {
-        flex: 3,
-        width: "100%",
-        alignItems: "center",
+        width: '100%',
+        alignItems: 'center',
         padding: 10,
         marginBottom: 10,
     },
+    scrollView: {
+        flexGrow: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     body: {
-        flex: 5,
-        width: "100%",
+        width: '90%',
+        alignItems: 'center',
+    },
+    card: {
+        width: '100%',
+        elevation: 4,
+        borderRadius: 8,
+        padding: 10,
+    },
+    overview: {
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    bold: {
+        fontWeight: 'bold',
+        marginBottom: 10,
     },
     footer: {
-        flex: 1,
-        width: "100%",
-        alignItems: "center",
-        marginTop: 20,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#4a148c',
     },
     footerText: {
         color: '#fff',
+    },
+    divider:{
+        marginTop: 10,
+        marginBottom: 10,
     }
-
 });
