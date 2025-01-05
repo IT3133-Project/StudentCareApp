@@ -49,7 +49,7 @@ export default function Profile({ route }) {
                 </View>
 
                 <View style={styles.footer}>
-                    <Text style={styles.footerText}>MyApp © 2024</Text>
+                    <Text style={styles.footerText}>UOV © 2024</Text>
                 </View>
             </ScrollView>
         </>
