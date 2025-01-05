@@ -4,12 +4,12 @@ import { KeyboardAvoidingView, SafeAreaView, ScrollView, View, StyleSheet, Platf
 import { Button, Text, TextInput } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { students } from "../data/StudentsDb";
+import Header from "./Header";
 
-export default function Login() {
+export default function Login({navigation}) {
     const [name, setName] = useState("");
     const [pwd, setPwd] = useState("");
     const [error, setError] = useState("");
-    const navigation = useNavigation();
 
     const handleLogin = () => {
         if (!name || !pwd) {
@@ -21,7 +21,7 @@ export default function Login() {
         );
         if (user) {
             setError("");
-            navigation.navigate("Profile", { user });
+            navigation.navigate("MainTab", { user });
         } else {
             setError("Invalid username or password");
         }
@@ -36,7 +36,10 @@ export default function Login() {
                 >
                     <ScrollView contentContainerStyle={styles.scrollContainer}>
                         <View style={styles.header}>
-                            <Text variant="displayLarge" style={styles.title}>
+                            <Header/>
+                        </View>
+                        <View style={styles.title}>
+                            <Text variant="displaySmall" style={styles.title}>
                                 STUDENT LOGIN
                             </Text>
                         </View>
@@ -93,16 +96,26 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginVertical: 20,
     },
-    header: {
-        marginBottom: 20,
+    title: {
+        marginTop:0,
+        marginBottom: 15,
+        textAlign: "center",
+        fontWeight: "bold",
+    },
+    header:{
+        flex: 3,
     },
     body: {
         marginBottom: 20,
+        flex: 5,
+        width: "100%",
     },
     footer: {
         backgroundColor: "#810541",
-        paddingVertical: 10,
         alignItems: "center",
+        flex: 1,
+        justifyContent: "center",
+        width: "100%",
     },
     input: {
         marginBottom: 10,
