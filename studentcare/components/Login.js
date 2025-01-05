@@ -1,52 +1,68 @@
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { KeyboardAvoidingView, SafeAreaView, ScrollView, View } from "react-native";
-import { Text, TextInput } from "react-native-paper";
+import { KeyboardAvoidingView, SafeAreaView, ScrollView, View, StyleSheet, Platform } from "react-native";
+import { Button, Text, TextInput } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { students } from '../data/StudentsDb'
-
+import { students } from "../data/StudentsDb";
 
 export default function Login() {
-    const [name, setName] = useState('');
-    const [pwd, setPwd] = useState('');
-    const [error, setError] = useState('');
+    const [name, setName] = useState("");
+    const [pwd, setPwd] = useState("");
+    const [error, setError] = useState("");
     const navigation = useNavigation();
 
     const handleLogin = () => {
         if (!name || !pwd) {
-            setError('Please Check your username or password')
+            setError("Please check your username or password");
+            return;
         }
-        const user = students.find((student) => student.username === name && student.password === pwd);
+        const user = students.find(
+            (student) => student.username === name && student.password === pwd
+        );
         if (user) {
             setError("");
-            navigation.navigate('Profile', { user });
-
+            navigation.navigate("Profile", { user });
         } else {
-            setError("Please Check your username or password ")
+            setError("Invalid username or password");
         }
-    }
-
+    };
 
     return (
         <SafeAreaProvider>
-            <SafeAreaView>
-                <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-                    <ScrollView>
+            <SafeAreaView style={styles.container}>
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === "ios" ? "padding" : "height"}
+                    style={styles.flexContainer}
+                >
+                    <ScrollView contentContainerStyle={styles.scrollContainer}>
                         <View style={styles.header}>
-                            <Text variant="displayLarge" style={styles.title}> STUDENT LOGIN</Text>
+                            <Text variant="displayLarge" style={styles.title}>
+                                STUDENT LOGIN
+                            </Text>
                         </View>
                         <View style={styles.body}>
                             <View style={styles.input}>
-                                <TextInput label="Username" mode="outlined" value={name} onChangeText={setName} />
+                                <TextInput
+                                    label="Username"
+                                    mode="outlined"
+                                    value={name}
+                                    onChangeText={setName}
+                                />
                             </View>
                             <View style={styles.input}>
-                                <TextInput label="Password" mode="outlined" secureTextEntry="true" value={pwd} onChangeText={setPwd} />
+                                <TextInput
+                                    label="Password"
+                                    mode="outlined"
+                                    secureTextEntry
+                                    value={pwd}
+                                    onChangeText={setPwd}
+                                />
                             </View>
-                            {error ? (
-                                <Text style={styles.errorText}>{error}</Text>
-                            ):null}
+                            {error ? <Text style={styles.errorText}>{error}</Text> : null}
                             <View style={styles.input}>
-                                <Button mode="contained" onPress={handleLogin}>Login</Button>
+                                <Button mode="contained" onPress={handleLogin}>
+                                    Login
+                                </Button>
                             </View>
                         </View>
                         <View style={styles.footer}>
@@ -59,36 +75,41 @@ export default function Login() {
     );
 }
 
-
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+    },
+    flexContainer: {
+        flex: 1,
+    },
+    scrollContainer: {
+        flexGrow: 1,
+        justifyContent: "center",
+        paddingHorizontal: 16,
+    },
     title: {
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginTop: 20,
-        marginBottom: 20,
-
+        fontWeight: "bold",
+        textAlign: "center",
+        marginVertical: 20,
     },
     header: {
-        flex: 3,
-        width: '100%',
+        marginBottom: 20,
     },
     body: {
-        flex: 5,
-        width: '100%',
+        marginBottom: 20,
     },
     footer: {
-        flex: 2,
-        backgroundColor: '#810541',
-        width: '100%',
-        alignItems: 'center',
+        backgroundColor: "#810541",
+        paddingVertical: 10,
+        alignItems: "center",
     },
     input: {
-        padding: 5,
-        marginBottom: 5,
+        marginBottom: 10,
     },
     errorText: {
         color: "red",
         textAlign: "center",
         marginBottom: 10,
-    }
-})
+    },
+});
