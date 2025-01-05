@@ -1,3 +1,5 @@
+# Student Care App
+
 This is a React Native app designed for the University of Vavuniya (UoV) students. The app allows students to log in and access various features like their profile, courses, and subjects with corresponding marks and details. The app provides an intuitive navigation system for students to manage their academic information.
 
 ## Features
@@ -65,18 +67,31 @@ Ensure you have the following installed:
   ```
 ---
 ## Screenshots
-### Login Screen
-![Login Screen](./Screenshots/Login%20Page.jpg)
 
-### Profile Screen
-![Profile Screen](./Screenshots/Profile%20Page.jpg)
+<div style="display: flex; justify-content: space-between;">
 
-### Course Screen
-![Course Screen](./Screenshots/Course%20Page.jpg)
+  <div style="margin-right: 10px; text-align: center;">
+    <p>Login Screen</p>
+    <img src="./Screenshots/Login%20Page.jpg" width="200">
+  </div>
 
-### Subjects Screen
-![Subjects Screen](./Screenshots/Subject%20Page.jpg)
+  <div style="margin-right: 10px; text-align: center;">
+    <p>Profile Screen</p>
+    <img src="./Screenshots/Profile%20Page.jpg" width="200">
+  </div>
 
-### Demo Video
-![Demo GIF](./Screenshots//Demo.gif)
+  <div style="margin-right: 10px; text-align: center;">
+    <p>Course Screen</p>
+    <img src="./Screenshots/Course%20Page.jpg" width="200">
+  </div>
+
+  <div style="margin-right: 10px; text-align: center;">
+    <p>Subjects Screen</p>
+    <img src="./Screenshots/Subject%20Page.jpg" width="200">
+  </div>
+</div>
+<div style="text-align: center;">
+    <p>Demo Video</p>
+    <img src="./Screenshots/Demo.gif" width="200">
+  </div>
 
