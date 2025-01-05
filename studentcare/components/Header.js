@@ -1,11 +1,11 @@
-import { View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
 
 export default function Header(){
     return(
         <>
-            <View>
-                <Image style={styles.image} source={require('../assets/uovlogo.png')}/>
+            <View style={styles.banner}>
+                <Image style={styles.image} source={require('../assets/uovlogo.png')} />
             </View>
         </>
     );
@@ -13,8 +13,17 @@ export default function Header(){
 
 const styles = StyleSheet.create({
     image: {
-        width: '100%',
+        width: 350,
         alignItems: 'center',
+        height:90,
         
+    },
+    banner:{
+        backgroundColor: '#f1f1f1',
+        width: '100%',
+        height: 150,
+        justifyContent: 'center',
+        alignItems:"center",
+        marginTop:10,
     }
 })
