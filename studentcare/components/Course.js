@@ -84,12 +84,11 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     footer: {
-        flex: 2,
+        flex: 1,
         width: "100%",
         alignItems: "center",
         marginTop: 20,
         backgroundColor: '#4a148c',
-        height: 20,
     },
     footerText: {
         color: '#fff',
