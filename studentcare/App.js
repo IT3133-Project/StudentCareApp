@@ -10,6 +10,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Course from './components/Course';
 import Subjects from './components/Subjects';
 import Profile from './components/Profile';
+import ManageStudents from './components/ManageStudent';
+import StudentList from './components/StudentList';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -17,7 +19,7 @@ const Tab = createBottomTabNavigator();
 function RootStack() {
   return (
     <Stack.Navigator
-      initialRouteName="Login"
+      initialRouteName="List"
       screenOptions={{
         headerTitleAlign: 'center',
         headerStyle: { backgroundColor: '#4a148c' },
@@ -33,6 +35,11 @@ function RootStack() {
         name="MainTab"
         component={MainTab}
         options={{ title: 'UoV Student Care' }}
+      />
+      <Stack.Screen
+        name="List"
+        component={StudentList}
+        options={{ title: 'List' }}
       />
     </Stack.Navigator>
   );
@@ -54,6 +61,7 @@ function MainTab({ route }) {
         initialParams={user}
         options={{
           tabBarLabel: 'Profile',
+          tabBarStyle: {  display: 'none' },
           tabBarIcon: ({ color, size }) => {
             return <Icon name="account" size={size} color={color} />;
           },
@@ -76,6 +84,16 @@ function MainTab({ route }) {
           tabBarLabel: 'Subjects',
           tabBarIcon: ({ color, size }) => {
             return <Icon name="book-open-outline" size={size} color={color} />;
+          },
+        }} />
+        <Tab.Screen
+        name="Setting"
+        component={ManageStudents}
+        initialParams={user}
+        options={{
+          tabBarLabel: 'Settings',
+          tabBarIcon: ({ color, size }) => {
+            return <Icon name="cog" size={size} color={color} />;
           },
         }} />
     </Tab.Navigator>
