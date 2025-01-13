@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { Avatar, Card, Divider, Text } from 'react-native-paper';
+import { Avatar, Button, Card, Divider, Text } from 'react-native-paper';
 import Header from './Header';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Profile({ route }) {
     const user = route.params?.user;
-
+    const navigation= useNavigation();
     return (
         <>
             <ScrollView contentContainerStyle={styles.scrollView}>
@@ -43,6 +44,11 @@ export default function Profile({ route }) {
                                     <Text>Age: {user.age}</Text>
                                     <Text>Blood Group: {user.blood_group}</Text>
                                 </View>
+                            </View>
+                            <View>
+                                <Button onPress={() => navigation.navigate('Course', { user })}>
+                                    Go to Course
+                                </Button>
                             </View>
                         </Card.Content>
                     </Card>
