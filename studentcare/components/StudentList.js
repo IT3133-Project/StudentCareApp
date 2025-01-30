@@ -1,30 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FlatList, StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import { students } from '../data/StudentsDb';
+import { students as initialStudents } from '../data/StudentsDb'; // Rename imported students
 import { TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Button } from 'react-native-paper';
 
-export default function StudentList() {
+export default function StudentList({ route }) {
     const navigation = useNavigation();
+    // Use renamed import for initial state
+    const [students, setStudents] = useState(initialStudents);
+    const [render, setRender] = useState(false);
+    React.useEffect(() => {
+        if (route.params?.newStudent) {
+            const { newStudent } = route.params;
+            setStudents((prevStudents) => [...prevStudents, { ...newStudent }]);
+            setRender(!render);
+        }
+    }, [route.params?.newStudent]);
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Student List</Text>
             <FlatList
                 data={students}
                 keyExtractor={(item) => item.id}
+                extraData={render}
                 renderItem={({ item }) => (
                     <View style={styles.card}>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MainTab', { user: item })}>
-                        <Text style={styles.itemName}>{item.name}</Text>
+                        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MainTab', { user: item })}>
+                            <Text style={styles.itemName}>{item.name}</Text>
                         </TouchableOpacity>
                     </View>
                 )}
-                contentContainerStyle={styles.listContent}
             />
+            <Button onPress={() => navigation.navigate('AddStudent')}>Add Student</Button>
         </SafeAreaView>
     );
 }
 
+// Styles remain unchanged
 const styles = StyleSheet.create({
     container: {
         flex: 1,

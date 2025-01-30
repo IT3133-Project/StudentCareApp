@@ -12,6 +12,7 @@ import Subjects from './components/Subjects';
 import Profile from './components/Profile';
 import ManageStudents from './components/ManageStudent';
 import StudentList from './components/StudentList';
+import AddStudent from './components/AddStudent';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -40,6 +41,11 @@ function RootStack() {
         name="List"
         component={StudentList}
         options={{ title: 'List' }}
+      />
+      <Stack.Screen
+        name="AddStudent"
+        component={AddStudent}
+        options={{ title: 'Add Student' }}
       />
     </Stack.Navigator>
   );
@@ -89,6 +95,16 @@ function MainTab({ route }) {
         <Tab.Screen
         name="Setting"
         component={ManageStudents}
+        initialParams={user}
+        options={{
+          tabBarLabel: 'Settings',
+          tabBarIcon: ({ color, size }) => {
+            return <Icon name="cog" size={size} color={color} />;
+          },
+        }} />
+        <Tab.Screen
+        name="AddStudent"
+        component={AddStudent}
         initialParams={user}
         options={{
           tabBarLabel: 'Settings',

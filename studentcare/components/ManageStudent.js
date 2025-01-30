@@ -1,10 +1,10 @@
-// UserAccountPage.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
-const UserAccountPage = () => {
+const ManageStudent = () => {
     const navigation = useNavigation();
+    const route = useRoute();
 
     // User details state
     const [userDetails, setUserDetails] = useState({
@@ -23,15 +23,23 @@ const UserAccountPage = () => {
         password: ''
     });
 
+    // Student List State
+    const [students, setStudents] = useState([]);
+
+    // Effect to capture added students
+    useEffect(() => {
+        if (route.params?.newStudent) {
+            setStudents(prevStudents => [...prevStudents, route.params.newStudent]);
+        }
+    }, [route.params?.newStudent]);
+
     // Handlers
     const handleUpdateUserDetails = () => {
         Alert.alert('Success', 'User details updated successfully!');
-        // Update logic here
     };
 
     const handleUpdateCredentials = () => {
         Alert.alert('Success', 'Credentials updated successfully!');
-        // Update logic here
     };
 
     const handleDeleteUser = () => {
@@ -41,7 +49,6 @@ const UserAccountPage = () => {
                 text: 'Delete',
                 style: 'destructive',
                 onPress: () => {
-                    // Delete user logic here
                     Alert.alert('Deleted', 'Account deleted successfully!');
                     navigation.navigate('Login');
                 }
@@ -49,12 +56,8 @@ const UserAccountPage = () => {
         ]);
     };
 
-    const handleManageCourseDetails = () => {
-        navigation.navigate('Course');
-    };
-
-    const handleManageSubjectAndMarks = () => {
-        navigation.navigate('Subjects');
+    const handleAddStudent = () => {
+        navigation.navigate('AddStudent');
     };
 
     return (
@@ -91,9 +94,17 @@ const UserAccountPage = () => {
 
             <Button title="Delete Account" onPress={handleDeleteUser} color="red" />
 
-            <Text style={styles.sectionHeading}>Manage Other Details</Text>
-            <Button title="Manage Course Details" onPress={handleManageCourseDetails} />
-            <Button title="Manage Subject & Marks" onPress={handleManageSubjectAndMarks} />
+            <Text style={styles.sectionHeading}>Manage Students</Text>
+            <Button title="Add Student" onPress={handleAddStudent} />
+
+            {students.length > 0 && (
+                <View>
+                    <Text style={styles.sectionHeading}>Student List</Text>
+                    {students.map((student, index) => (
+                        <Text key={index} style={styles.studentItem}>{student.name} (Age: {student.age})</Text>
+                    ))}
+                </View>
+            )}
         </View>
     );
 };
@@ -121,7 +132,11 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         padding: 8,
         marginBottom: 8
+    },
+    studentItem: {
+        fontSize: 16,
+        padding: 4
     }
 });
 
-export default UserAccountPage;
+export default ManageStudent;
